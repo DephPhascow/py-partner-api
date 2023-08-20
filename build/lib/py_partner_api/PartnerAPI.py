@@ -30,27 +30,6 @@ class PartnerAPI:
             result = [Service(**{**service, **self.get_description_new(service['service'])}) for service in response.json()]
             self.__cache.set("services", result)
         return result
-    def get_services_descriptions_old(self):
-        response = requests.get(self.__services_url, headers={
-            'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
-        })
-        soup = BeautifulSoup(response.text, "html.parser")
-        table = soup.find('table', id='myTable')
-        tbody = table.find('tbody')
-        tr_list = tbody.find_all("tr")
-        categories = {}
-        for tr in tr_list:
-            service_id = tr.find("td", class_="idFiltered")
-            if not service_id:
-                continue
-            service_id = service_id.text
-            compilation_time = tr.find("td", class_="nowrap").text
-            description = tr.find("td", class_="service-description").text
-            categories[service_id] = {
-                "time": compilation_time,
-                "description": description
-            }
-        return categories
     def get_services_descriptions(self) -> dict:
         categories = self.__cache.get("descriptions", None)
         if not categories:

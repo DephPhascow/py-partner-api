@@ -7,3 +7,4 @@ env/
 bilds/
 dist/
 *.egg-info
+!requirements.txt
