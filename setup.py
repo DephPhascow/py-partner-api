@@ -9,17 +9,17 @@ with open("LICENCE", "r") as fh:
     license = fh.read()
  
 setup(
-    name = "",
+    name = "py_partner_api",
     version = "1.1.0",
-    keywords = ("", ),
-    description = "",
+    keywords = ("partner", "smm"),
+    description = "Simple work with partner",
     long_description = readme,
     license = license,
     url = "",
-    author = "",
-    author_email = "",
+    author = "DPhascow",
+    author_email = "d.sinisterpsychologist@gmail.com",
     packages = find_packages(),
     include_package_data = True,
-    platforms = "",
-    install_requires = [""]
+    platforms = "any",
+    install_requires = ["requests", "beautifulsoup4",]
 )
